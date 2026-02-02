@@ -93,7 +93,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
                 <div className="max-w-6xl w-full flex flex-col gap-12">
                   <div className="flex flex-col lg:flex-row gap-16 items-start">
                     <div className="w-72 h-96 shrink-0 glass-panel p-2 rounded-2xl relative group overflow-hidden border border-white/5">
-                      <img src="/public/images/Harshit.jpg" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-xl" alt="Profile" />
+                      <img src="/images/Harshit.jpg" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-xl" alt="Profile" />
                     </div>
                     <div className="flex-1 space-y-8">
                        <h3 className="text-4xl font-bold tracking-tighter leading-tight italic">

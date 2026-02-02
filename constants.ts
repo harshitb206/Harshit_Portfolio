@@ -9,7 +9,7 @@ export const PROJECTS: Project[] = [
     description: 'An AI-powered legal & health rights advisor delivering multilingual support via web, SMS, and voice.',
     stack: ['Streamlit', 'Flask', 'Twilio', 'gTTS'],
     link: 'https://github.com/harshitb206/GharGharGyaan',
-    image: '/public/images/G3.jpeg'
+    image: '/images/G3.jpeg'
   },
   {
     id: '002',
@@ -18,7 +18,7 @@ export const PROJECTS: Project[] = [
     description: 'A centralized platform for citizens to report and track resolution of public grievances effectively.',
     stack: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     link: 'https://github.com/harshitb206/Nivaran',
-    image: '/public/images/Nivaran.jpeg'
+    image: '/images/Nivaran.jpeg'
   },
   {
     id: '003',
@@ -27,7 +27,7 @@ export const PROJECTS: Project[] = [
     description: 'Platform focusing on ecological tracking and promoting sustainable practices through data-driven insights.',
     stack: ['Python', 'TensorFlow', 'Flask', 'React'],
     link: 'https://github.com/harshitb206/ECOVERSE',
-    image: '/public/images/Ecoverse.jpeg'
+    image: '/images/Ecoverse.jpeg'
   },
   {
     id: '004',
@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
     description: 'IoT-based Drowsiness Detection System using real-time sensors and vision tracking to prevent accidents.',
     stack: ['OpenCV', 'Mediapipe', 'Raspberry Pi', 'Python'],
     link: 'https://github.com/harshitb206/SafeDrive',
-    image: '/public/images/SAFE.jpeg'
+    image: '/images/SAFE.jpeg'
   },
   {
     id: '005',
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
     description: 'AI-driven expense tracker that categorizes spending and provides predictive budget analysis.',
     stack: ['React', 'Firebase', 'Scikit-Learn', 'Node.js'],
     link: 'https://github.com/harshitb206/Expenza',
-    image: '/public/images/expenza.jpeg'
+    image: '/images/expenza.jpeg'
   },
   {
     id: '006',
@@ -54,7 +54,7 @@ export const PROJECTS: Project[] = [
     description: 'Health Intelligence Protocol designed to monitor and analyze patient vitals with predictive alerting.',
     stack: ['NLP', 'Python', 'Flask', 'Docker'],
     link: 'https://github.com/harshitb206/HIP',
-    image: '/public/images/hip.jpeg'
+    image: '/images/hip.jpeg'
   }
 ];
 
