@@ -123,6 +123,6 @@ export const EDUCATION: Education[] = [
   }
 ];
 
-export const EMAIL = 'harshitb206@gmail.com';
+export const EMAIL = 'harshitbhatia206@gmail.com';
 export const GITHUB_URL = 'https://github.com/harshitb206';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/harshit-bhatia206/';

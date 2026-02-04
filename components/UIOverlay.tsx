@@ -132,23 +132,37 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
 
       <div className="fixed inset-0 pointer-events-none z-10 flex print:hidden">
         {/* Straight Vertical Navigation */}
-        <div className="hidden md:flex flex-col justify-center p-12 pointer-events-auto h-full w-48 lg:w-56 items-start gap-12">
-          {navItems.map((label, idx) => (
-            <button
-              key={idx}
-              onClick={() => onNavigate(idx)}
-              className="group flex items-center gap-6 focus:outline-none w-full text-left"
-            >
-              <motion.div 
-                className={`h-1.5 rounded-full transition-all duration-500 ${activeBlock === idx ? 'bg-[#00ff88] w-12 shadow-[0_0_20px_#00ff88]' : 'bg-zinc-800 w-6 group-hover:bg-zinc-600 group-hover:w-8'}`}
-                animate={activeBlock === idx ? { scaleX: [1, 1.2, 1] } : {}}
-              />
-              <span className={`text-[11px] font-mono tracking-[0.2em] uppercase transition-all duration-300 ${activeBlock === idx ? 'text-[#00ff88] translate-x-2 font-bold' : 'text-zinc-500 group-hover:text-zinc-300'}`}>
-                {label}
-              </span>
-            </button>
-          ))}
-        </div>
+        <div className="hidden md:flex flex-col justify-center p-12 pointer-events-auto h-full w-56 lg:w-64 items-start gap-14">
+  {navItems.map((label, idx) => (
+    <button
+      key={idx}
+      onClick={() => onNavigate(idx)}
+      className="group flex items-center gap-6 focus:outline-none w-full text-left"
+    >
+      {/* Indicator Bar */}
+      <motion.div 
+        className={`h-1.5 rounded-full transition-all duration-500 
+        ${activeBlock === idx 
+          ? 'bg-[#00ff88] w-14 shadow-[0_0_25px_#00ff88]' 
+          : 'bg-zinc-800 w-8 group-hover:bg-zinc-500 group-hover:w-10'
+        }`}
+        animate={activeBlock === idx ? { scaleX: [1, 1.3, 1] } : {}}
+      />
+
+      {/* Label Text — BIGGER */}
+      <span 
+        className={`text-[15px] md:text-[13px] font-bold uppercase tracking-[0.3em] transition-all duration-300
+        ${activeBlock === idx 
+          ? 'text-[#00ff88] translate-x-3 scale-[1.05]' 
+          : 'text-zinc-400 group-hover:text-white'
+        }`}
+      >
+        {label}
+      </span>
+    </button>
+  ))}
+</div>
+
 
         <div className="flex-1 flex flex-col relative h-full">
           {/* Header */}
@@ -218,27 +232,36 @@ I specialize in Machine Learning and Artificial Intelligence, with hands-on expe
               ))}
 
               {activeBlock === 2 && SectionContainer("Skills", (
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pointer-events-auto">
-                  {SKILL_CATEGORIES.map((cat, i) => (
-                    <motion.div 
-                      key={i} 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="glass-panel p-8 rounded-2xl border border-white/5 group hover:border-[#00ff88]/30 transition-all bg-black/40"
-                    >
-                      <h3 className="text-[#00ff88] text-[10px] font-mono uppercase tracking-[0.4em] mb-6 border-b border-[#00ff88]/10 pb-4">{cat.title}</h3>
-                      <div className="flex flex-wrap gap-3">
-                        {cat.skills.map((skill, j) => (
-                          <span key={j} className="px-3 py-1.5 bg-zinc-900/50 rounded-lg text-zinc-300 text-[11px] font-bold border border-white/5 group-hover:border-[#00ff88]/20 transition-all shadow-sm">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ))}
+  <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pointer-events-auto">
+    {SKILL_CATEGORIES.map((cat, i) => (
+      <motion.div 
+        key={i} 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: i * 0.1 }}
+        className="glass-panel p-10 rounded-2xl border border-white/5 group hover:border-[#00ff88]/40 transition-all bg-black/40"
+      >
+        {/* Category Title */}
+        <h3 className="text-[#00ff88] text-[14px] md:text-[16px] font-mono uppercase tracking-[0.35em] mb-8 border-b border-[#00ff88]/15 pb-5">
+          {cat.title}
+        </h3>
+
+        {/* Skills List */}
+        <div className="flex flex-wrap gap-4">
+          {cat.skills.map((skill, j) => (
+            <span 
+              key={j} 
+              className="px-4 py-2 bg-zinc-900/60 rounded-xl text-zinc-200 text-[15px] md:text-[14px] font-semibold border border-white/10 group-hover:border-[#00ff88]/30 transition-all shadow-md hover:scale-[1.05]"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+    ))}
+  </div>
+))}
+
 
               {activeBlock === 3 && SectionContainer("Projects", (
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20 pointer-events-auto">
@@ -328,8 +351,8 @@ I specialize in Machine Learning and Artificial Intelligence, with hands-on expe
                 <motion.div key="contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 flex items-center justify-center p-10 pointer-events-auto">
                   <div className="max-w-2xl w-full glass-panel p-12 md:p-16 text-center rounded-3xl relative border border-white/5">
                     <CloudBubbles />
-                    <h2 className="text-6xl font-black mb-10 tracking-tighter uppercase text-white leading-none">Transmission</h2>
-                    <p className="text-zinc-500 font-mono text-sm mb-12 max-w-md mx-auto">Available for high-stakes AI collaborations and system engineering roles.</p>
+                    <h2 className="text-6xl font-black mb-10 tracking-tighter uppercase text-white leading-none">CONNECT HERE</h2>
+                    <p className="text-zinc-500 font-mono text-sm mb-12 max-w-md mx-auto">Available for  AI collaborations and system engineering roles.</p>
                     <div className="flex flex-col gap-5">
                        <a href={`mailto:${EMAIL}`} className="p-6 bg-white text-black font-black uppercase tracking-[0.3em] hover:bg-[#00ff88] transition-all text-xs rounded-xl shadow-2xl">
                           {EMAIL}
@@ -358,9 +381,9 @@ function SectionContainer(title: string, children: React.ReactNode) {
     >
       <div className="max-w-7xl w-full flex flex-col pointer-events-auto relative h-full">
         {/* Section Title Header */}
-        <div className="flex items-center gap-4 mb-10 opacity-30 select-none shrink-0">
+        <div className="flex items-center gap-4 mb-10 opacity-100 select-none shrink-0">
            <div className="h-[1px] w-20 bg-zinc-500" />
-           <span className="text-[10px] uppercase font-mono tracking-[1em]">{title}</span>
+           <span className="text-[12px] uppercase font-mono tracking-[1em]">{title}</span>
         </div>
         
         {/* Scrollable Area - Visible Scrollbar Enabled */}
