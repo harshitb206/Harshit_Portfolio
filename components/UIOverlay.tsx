@@ -119,7 +119,12 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
       </AnimatePresence>
 
       {/* Floating Chat Bubble */}
-      <div className="fixed bottom-10 right-10 z-50 pointer-events-auto cursor-pointer group">
+      <a 
+        href={LINKEDIN_URL} 
+        target="_blank" 
+        rel="noreferrer" 
+        className="fixed bottom-10 right-10 z-50 pointer-events-auto cursor-pointer group"
+      >
         <motion.div 
           whileHover={{ scale: 1.05 }}
           className="bg-white text-black px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl transition-all"
@@ -128,7 +133,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
           <span className="text-[10px] font-bold">Hi! How can we help?</span>
           <MessageCircle size={14} className="ml-2" />
         </motion.div>
-      </div>
+      </a>
 
       <div className="fixed inset-0 pointer-events-none z-10 flex print:hidden">
         {/* Straight Vertical Navigation */}
