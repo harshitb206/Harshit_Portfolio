@@ -1,8 +1,7 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS, SKILL_CATEGORIES, ACHIEVEMENTS, EDUCATION, EMAIL, GITHUB_URL, LINKEDIN_URL } from '../constants';
-import { Shield, Cpu, Activity, ExternalLink, Trophy, Quote, MessageCircle } from 'lucide-react';
+import { Shield, Cpu, Activity, ExternalLink, Trophy, Quote, MessageCircle, X } from 'lucide-react';
 import CloudBubbles from './CloudBubbles';
 
 interface UIOverlayProps {
@@ -11,6 +10,9 @@ interface UIOverlayProps {
 }
 
 const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
+  // State to track the project selected for expansion
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
   const stats = [
     { label: 'Projects Completed', value: '7+', icon: <Cpu size={16} /> },
     { label: 'Years Experience in AI', value: '1+', icon: <Activity size={16} /> },
@@ -22,6 +24,100 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
 
   return (
     <>
+      {/* Project Expansion Overlay */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 pointer-events-auto">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="absolute inset-0 bg-black/90 backdrop-blur-xl cursor-zoom-out"
+            />
+            
+            {/* Expanded Modal */}
+            <motion.div 
+              layoutId={`project-card-${selectedProject.id}`}
+              className="glass-panel w-full max-w-5xl rounded-3xl overflow-hidden relative z-10 border border-white/10 flex flex-col md:flex-row bg-[#050505] shadow-2xl"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-6 right-6 z-20 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-[#00ff88] hover:text-black transition-all border border-white/10"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Modal Image Area */}
+              {selectedProject.image && (
+                <div className="md:w-3/5 h-64 md:h-auto overflow-hidden bg-zinc-900">
+                  <motion.img 
+                    layoutId={`project-img-${selectedProject.id}`}
+                    src={selectedProject.image} 
+                    className="w-full h-full object-cover" 
+                    alt={selectedProject.title} 
+                  />
+                </div>
+              )}
+
+              {/* Modal Content Area */}
+              <div className="p-8 md:p-12 md:w-2/5 flex flex-col justify-center bg-black/40 backdrop-blur-md">
+                <motion.span 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-[#00ff88] text-[10px] font-mono uppercase tracking-[0.3em] mb-4"
+                >
+                  {selectedProject.type}
+                </motion.span>
+                <motion.h3 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-4xl font-black text-white mb-6 tracking-tighter"
+                >
+                  {selectedProject.title}
+                </motion.h3>
+                <motion.p 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-zinc-400 text-sm leading-relaxed mb-8 font-mono"
+                >
+                  {selectedProject.description}
+                </motion.p>
+                
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="flex flex-wrap gap-2 mb-10"
+                >
+                  {selectedProject.stack.map((s: string, j: number) => (
+                    <span key={j} className="text-[10px] bg-zinc-900 px-3 py-1 rounded text-zinc-500 border border-white/5 uppercase">
+                      #{s}
+                    </span>
+                  ))}
+                </motion.div>
+
+                <motion.a 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  href={selectedProject.link} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="flex items-center justify-center gap-3 py-4 bg-[#00ff88] text-black text-xs font-black uppercase tracking-widest hover:scale-105 transition-all rounded-xl shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+                >
+                  <ExternalLink size={18} /> View Source Repository
+                </motion.a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Floating Chat Bubble */}
       <div className="fixed bottom-10 right-10 z-50 pointer-events-auto cursor-pointer group">
         <motion.div 
@@ -58,7 +154,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
           {/* Header */}
           <div className="p-10 flex justify-between items-start pointer-events-auto">
             <div className="font-mono">
-              <h1 className="text-2xl font-black text-[#00ff88] tracking-tighter">HARSHIT.SYSTEM</h1>
+              <h1 className="text-2xl font-black text-[#00ff88] tracking-tighter">HARSHIT BHATIA</h1>
               <p className="text-[10px] text-zinc-500 uppercase tracking-widest"></p>
             </div>
           </div>
@@ -73,7 +169,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
                       HARSHIT BHATIA<span className="text-[#00ff88]">.</span>
                     </motion.h2>
                     <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-[#00ff88] text-sm md:text-xl uppercase tracking-[0.4em] font-bold italic mb-12">
-                      Bridging the AI-Human Digital Divide
+                      
                     </motion.p>
                   </div>
 
@@ -97,10 +193,12 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
                     </div>
                     <div className="flex-1 space-y-8">
                        <h3 className="text-4xl font-bold tracking-tighter leading-tight italic">
-                         "Building <span className="text-[#00ff88]">autonomous protocols</span> that integrate seamlessly into human workflows."
+                         "Turning <span className="text-[#00ff88]">  ideas</span> into intelligent systems."
                        </h3>
                        <p className="text-zinc-400 text-lg leading-relaxed border-l-2 border-zinc-800 pl-8">
-                         I am a pre-final B.Tech Computer Engineering student at Amity University Punjab. My research focus lies in Vision-based AI systems and NLP frameworks that solve real-world accessibility and safety problems.
+                         Hi, I’m Harshit Bhatia, a pre-final B.Tech Computer Science Engineering student at Amity University, Punjab, with a strong passion for technology, innovation, and building impactful solutions.
+
+I specialize in Machine Learning and Artificial Intelligence, with hands-on experience in algorithms like K-Means, KNN, Image Processing, and Generative AI. I’m also skilled in programming with Python, C, C++, Java, and HTML, while actively exploring full-stack technologies.
                        </p>
                        <div className="glass-panel p-6 rounded-2xl border border-white/5">
                           <p className="text-[#00ff88] text-[10px] font-mono uppercase tracking-[0.3em] mb-4">Education Timeline</p>
@@ -145,10 +243,22 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
               {activeBlock === 3 && SectionContainer("Projects", (
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20 pointer-events-auto">
                   {PROJECTS.map((proj, i) => (
-                    <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-panel rounded-2xl overflow-hidden group border border-white/5 flex flex-col min-h-[450px] bg-black/40 hover:bg-black/60 transition-all">
+                    <motion.div 
+                      key={i} 
+                      layoutId={`project-card-${proj.id}`}
+                      onClick={() => setSelectedProject(proj)}
+                      initial={{ opacity: 0, y: 20 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="glass-panel rounded-2xl overflow-hidden group border border-white/5 flex flex-col min-h-[450px] bg-black/40 hover:bg-black/60 transition-all cursor-pointer relative"
+                    >
                       {proj.image && (
                         <div className="h-48 overflow-hidden relative">
-                          <img src={proj.image} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" alt={proj.title} />
+                          <motion.img 
+                            layoutId={`project-img-${proj.id}`}
+                            src={proj.image} 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
+                            alt={proj.title} 
+                          />
                           <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-bold text-[#00ff88] uppercase tracking-widest">{proj.type}</div>
                         </div>
                       )}
@@ -158,15 +268,15 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
                              <h3 className="text-xl font-bold text-white group-hover:text-[#00ff88] transition-colors">{proj.title}</h3>
                              {!proj.image && <span className="bg-[#00ff88]/10 border border-[#00ff88]/20 px-2 py-1 rounded text-[8px] font-bold text-[#00ff88] uppercase tracking-widest">{proj.type}</span>}
                           </div>
-                          <p className="text-xs text-zinc-500 font-mono leading-relaxed mb-6">{proj.description}</p>
+                          <p className="text-xs text-zinc-500 font-mono leading-relaxed mb-6 line-clamp-3">{proj.description}</p>
                         </div>
                         <div>
                           <div className="flex flex-wrap gap-2 mb-8">
                             {proj.stack.map((s, j) => <span key={j} className="text-[8px] bg-zinc-900 px-2 py-1 rounded text-zinc-400 uppercase border border-white/5">#{s}</span>)}
                           </div>
-                          <a href={proj.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 py-3 bg-zinc-100 text-black text-[10px] font-black uppercase tracking-widest hover:bg-[#00ff88] transition-all rounded-lg">
-                            <ExternalLink size={14} /> View Repository
-                          </a>
+                          <div className="w-full flex items-center justify-center gap-2 py-3 bg-zinc-100/10 text-white text-[10px] font-black uppercase tracking-widest group-hover:bg-[#00ff88] group-hover:text-black transition-all rounded-lg border border-white/5">
+                            Click to Expand
+                          </div>
                         </div>
                       </div>
                     </motion.div>
