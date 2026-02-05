@@ -127,7 +127,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
       >
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          className="bg-white text-black px-4 py-2 rounded-full flex items-center  shadow-2xl transition-all"
+          className="bg-white text-black px-1 py-2 rounded-full center items-center shadow-2xl transition-all"
         >
            
           <span className="text-[10px] font-bold"></span>
