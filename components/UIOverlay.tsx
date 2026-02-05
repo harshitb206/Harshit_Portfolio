@@ -127,10 +127,10 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
       >
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          className="bg-white text-black px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl transition-all"
+          className="bg-white text-black px-4 py-2 rounded-full flex items-center  shadow-2xl transition-all"
         >
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-[10px] font-bold">Hi! How can we help?</span>
+           
+          <span className="text-[10px] font-bold"></span>
           <MessageCircle size={14} className="ml-2" />
         </motion.div>
       </a>
