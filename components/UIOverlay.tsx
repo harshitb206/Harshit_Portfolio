@@ -173,7 +173,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ activeBlock, onNavigate }) => {
           {/* Header */}
           <div className="p-10 flex justify-between items-start pointer-events-auto">
             <div className="font-mono">
-              <h1 className="text-2xl font-black text-[#00ff88] tracking-tighter">HARSHIT BHATIA</h1>
+              <h1 className="text-2xl font-black text-[#00ff88] tracking-tighter">HB.</h1>
               <p className="text-[10px] text-zinc-500 uppercase tracking-widest"></p>
             </div>
           </div>
