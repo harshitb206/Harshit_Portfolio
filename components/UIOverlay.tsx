@@ -352,24 +352,33 @@ I specialize in Machine Learning and Artificial Intelligence, with hands-on expe
                 </div>
               ))}
 
-              {activeBlock === 5 && (
-                <motion.div key="contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 flex items-center justify-center p-10 pointer-events-auto">
-                  <div className="max-w-2xl w-full glass-panel p-12 md:p-16 text-center rounded-3xl relative border border-white/5">
-                    <CloudBubbles />
-                    <h2 className="text-6xl font-black mb-10 tracking-tighter uppercase text-white leading-none">CONNECT HERE</h2>
-                    <p className="text-zinc-500 font-mono text-sm mb-12 max-w-md mx-auto">Available for  AI collaborations and system engineering roles.</p>
-                    <div className="flex flex-col gap-5">
-                       <a href={`mailto:${EMAIL}`} className="p-6 bg-white text-black font-black uppercase tracking-[0.3em] hover:bg-[#00ff88] transition-all text-xs rounded-xl shadow-2xl">
-                          {EMAIL}
-                       </a>
-                       <div className="grid grid-cols-2 gap-4">
-                          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="p-5 glass-panel text-white font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-[10px] rounded-xl border border-white/5">GitHub</a>
-                          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="p-5 glass-panel text-white font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-[10px] rounded-xl border border-white/5">LinkedIn</a>
-                       </div>
+                {activeBlock === 5 && (
+                  <motion.div key="contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 flex items-center justify-center p-10 pointer-events-auto">
+                    <div className="max-w-2xl w-full glass-panel p-12 md:p-16 text-center rounded-3xl relative border border-white/5">
+                      <CloudBubbles />
+                      <h2 className="text-6xl font-black mb-10 tracking-tighter uppercase text-white leading-none">CONNECT HERE</h2>
+                      <p className="text-zinc-500 font-mono text-sm mb-12 max-w-md mx-auto">Available for  AI collaborations and internship roles.</p>
+                      <div className="flex flex-col gap-5">
+                        <a href={`mailto:${EMAIL}`} className="p-6 bg-white text-black font-black uppercase tracking-[0.3em] hover:bg-[#00ff88] transition-all text-xs rounded-xl shadow-2xl">
+                            {EMAIL}
+                        </a>
+                        {/* --- ADD RESUME DOWNLOAD BUTTON HERE --- */}
+         <a 
+           href="/harshitResumeneww.pdf" 
+           download="Harshit_Bhatia_Resume.pdf"
+           className="p-5 bg-zinc-900 text-[#00ff88] font-bold uppercase tracking-widest text-[10px] rounded-xl border border-[#00ff88]/20 hover:bg-[#00ff88] hover:text-black transition-all flex items-center justify-center gap-2"
+         >
+           Download Resume
+         </a>
+         {/* ---------------------------------------- */}
+                        <div className="grid grid-cols-2 gap-4">
+                            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="p-5 glass-panel text-white font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-[10px] rounded-xl border border-white/5">GitHub</a>
+                            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="p-5 glass-panel text-white font-bold hover:bg-white hover:text-black transition-all uppercase tracking-widest text-[10px] rounded-xl border border-white/5">LinkedIn</a>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              )}
+                  </motion.div>
+                )}
             </AnimatePresence>
           </div>
         </div>
